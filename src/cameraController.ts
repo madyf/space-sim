@@ -3,9 +3,9 @@ import { PerspectiveCamera, Vector3 } from "three";
 import { PhysicsObject } from "./physicsObject";
 
 export class CameraController extends PerspectiveCamera implements PhysicsObject{
-    private speed = 0.2
+    private speed = 2
     constructor(public velocity: Vector3, public radius: number, public mass: number){
-        super(75, window.innerWidth / window.innerHeight, 0.1, 1000 )  
+        super(75, window.innerWidth / window.innerHeight, 0.1, 2000 )  
     }
 
     move(){

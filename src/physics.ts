@@ -1,5 +1,7 @@
 import { Vector3 } from "three";
+import { CameraController } from "./cameraController";
 import { PhysicsObject } from "./physicsObject";
+import { Planet } from "./planetEntity";
 
 export class Physics{
     private system:PhysicsObject[] = []
@@ -7,10 +9,11 @@ export class Physics{
 
     }
 
-    addPlanet(...planet:PhysicsObject[]){
-        planet.forEach(element => {
+    addPlanet(planets: Planet[], camera: CameraController){
+        planets.forEach(element => {
             this.system.push(element)
         });
+        this.system.push(camera)
     }
 
     removePlanet(planet:PhysicsObject){
@@ -26,23 +29,13 @@ export class Physics{
                 if(planet != otherPlanet){
 
                     temp.copy(planet.position)
-                    const force = (planet.mass + otherPlanet.mass / ((planet.position.distanceTo(otherPlanet.position))**2)) * 0.001
+                    const force = (planet.mass + otherPlanet.mass / ((planet.position.distanceTo(otherPlanet.position))**2)) * 0.000001
 
-                    if(planet.position.distanceTo(otherPlanet.position) <= (planet.radius + otherPlanet.radius)*2){
+                    if(planet.position.distanceTo(otherPlanet.position) <= (planet.radius + otherPlanet.radius) * 10){
                         planet.velocity.add(temp.sub(otherPlanet.position).normalize().multiplyScalar(force))
                     }
 
                     planet.velocity.add(temp.sub(otherPlanet.position).normalize().multiplyScalar(-force))
-                }
-            }
-        })
-    }
-
-    collision(){
-        this.system.forEach((planet) => {
-            for(let otherPlanet of this.system){
-                if(planet.position.distanceTo(otherPlanet.position) <= planet.radius + otherPlanet.radius){
-                    
                 }
             }
         })
