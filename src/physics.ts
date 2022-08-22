@@ -29,7 +29,7 @@ export class Physics{
                 if(planet != otherPlanet){
 
                     temp.copy(planet.position)
-                    const force = (planet.mass + otherPlanet.mass / ((planet.position.distanceTo(otherPlanet.position))**2)) * 0.000001
+                    const force = (planet.mass + otherPlanet.mass / ((planet.position.distanceTo(otherPlanet.position))**2)) * 0.00001
 
                     if(planet.position.distanceTo(otherPlanet.position) <= (planet.radius + otherPlanet.radius) * 10){
                         planet.velocity.add(temp.sub(otherPlanet.position).normalize().multiplyScalar(force))
