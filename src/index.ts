@@ -29,7 +29,7 @@ scene.background
 
 camera.position.z = 100;
 
-const stars = StarGenerator(6000)
+const stars = StarGenerator(60000)
 
 scene.add(directionalLight, light, stars);
 
